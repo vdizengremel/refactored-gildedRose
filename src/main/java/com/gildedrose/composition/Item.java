@@ -5,17 +5,17 @@ public class Item {
     private final String name;
     private int sellIn;
     private Quality quality;
-    private final Strategy strategy;
+    private final UpdateQualityStrategy updateQualityStrategy;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = new Quality(quality);
-        this.strategy = Strategy.findFor(this);
+        this.updateQualityStrategy = UpdateQualityStrategy.findFor(this);
     }
 
     public void updateQuality() {
-        this.strategy.updateQuality(this);
+        this.updateQualityStrategy.updateQuality(this);
     }
 
     public void updateSellIn() {

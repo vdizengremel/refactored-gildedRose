@@ -160,6 +160,4 @@ class GildedRoseTest {
         Item[] items = new Item[]{item};
         return new GildedRose(items);
     }
-
-
 }

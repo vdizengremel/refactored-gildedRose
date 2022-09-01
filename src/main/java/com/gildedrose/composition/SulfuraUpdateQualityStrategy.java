@@ -1,6 +1,6 @@
 package com.gildedrose.composition;
 
-public class SulfuraStrategy implements Strategy {
+public class SulfuraUpdateQualityStrategy implements UpdateQualityStrategy {
     @Override
     public boolean isApplicable(Item item) {
         return item.isSulfura();

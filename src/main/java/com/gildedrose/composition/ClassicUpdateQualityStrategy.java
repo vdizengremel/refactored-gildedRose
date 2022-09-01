@@ -1,6 +1,6 @@
 package com.gildedrose.composition;
 
-public class ClassicStrategy implements Strategy {
+public class ClassicUpdateQualityStrategy implements UpdateQualityStrategy {
     @Override
     public boolean isApplicable(Item item) {
         return true;
