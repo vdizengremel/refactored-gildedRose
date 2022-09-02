@@ -9,4 +9,4 @@ If you imagine the Item class to be used in a bigger system, the inheritance sol
 
 
 # Hypothesis taken
-The quality of an item is always between 0 and 50 whatever the type of item.
+The quality of an item should always be between 0 and 50 except for sulfura.

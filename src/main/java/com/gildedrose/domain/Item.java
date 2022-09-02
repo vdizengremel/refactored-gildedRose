@@ -10,8 +10,14 @@ public class Item {
     public Item(String name, int remainingDaysBeforeExpiration, int quality) {
         this.name = name;
         this.remainingDaysBeforeExpiration = remainingDaysBeforeExpiration;
-        this.quality = new Quality(quality);
         this.updateQualityStrategy = UpdateQualityStrategy.findFor(this);
+
+        if(isSulfura()) {
+            this.quality = Quality.immutableQualityOf(80);
+        } else {
+            this.quality = new Quality(quality);
+        }
+
     }
 
     public void ageByOneDay() {
@@ -22,6 +28,9 @@ public class Item {
         }
     }
 
+    public int getQuality() {
+        return this.quality.getValue();
+    }
     boolean isExpired() {
         return this.remainingDaysBeforeExpiration < 0;
     }
@@ -31,7 +40,7 @@ public class Item {
     }
 
     void becomeWorthless() {
-        this.quality = Quality.MIN;
+        this.quality = this.quality.min();
     }
 
     void increaseQuality() {

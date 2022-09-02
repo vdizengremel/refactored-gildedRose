@@ -25,14 +25,14 @@ class GildedRoseTest {
 
     @Test
     void shouldDecreaseSellInAndQualityWhenSulfuraAndQualityIsSuperiorToZero() {
-        Item item = createSulfura(1, 1);
+        Item item = createSulfura(1);
         GildedRose app = buildGildedRose(item);
         app.makeItemsAging();
-        assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(1, 1));
+        assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(1));
     }
 
-    private Item createSulfura(int quality, int sellIn) {
-        return new Item("Sulfuras, Hand of Ragnaros", sellIn, quality);
+    private Item createSulfura(int sellIn) {
+        return new Item("Sulfuras, Hand of Ragnaros", sellIn, 80);
     }
 
     @Test
@@ -151,10 +151,18 @@ class GildedRoseTest {
 
     @Test
     void shouldNotChangeItemWhenSulfuraAndSellInLowerOrEqualTo0() {
-        Item item = createSulfura(5, -1);
+        Item item = createSulfura(-1);
         GildedRose app = buildGildedRose(item);
         app.makeItemsAging();
-        assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(5, -1));
+        assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(-1));
+    }
+
+    @Test
+    void shouldHaveQualityOf80WhenSulfura() {
+        Item item = createSulfura(-1);
+        GildedRose app = buildGildedRose(item);
+        app.makeItemsAging();
+        assertThat(item.getQuality()).isEqualTo(80);
     }
 
     private GildedRose buildGildedRose(Item item) {
