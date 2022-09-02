@@ -1,4 +1,4 @@
-package com.gildedrose.composition;
+package com.gildedrose.domain;
 
 public class Item {
 
@@ -14,7 +14,7 @@ public class Item {
         this.updateQualityStrategy = UpdateQualityStrategy.findFor(this);
     }
 
-    void ageByOneDay() {
+    public void ageByOneDay() {
         boolean isNotSulfura = !this.isSulfura();
         if (isNotSulfura) {
             this.remainingDaysBeforeExpiration = this.remainingDaysBeforeExpiration - 1;
@@ -53,10 +53,6 @@ public class Item {
     @Override
     public String toString() {
         return this.name + ", " + this.remainingDaysBeforeExpiration + ", " + this.quality.getValue();
-    }
-
-    static Item agedBrie(int quantity, int sellIn) {
-        return new Item("Aged Brie", quantity, sellIn);
     }
 
     public boolean isAgedBrie() {

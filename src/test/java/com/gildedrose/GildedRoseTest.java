@@ -1,5 +1,6 @@
-package com.gildedrose.composition;
+package com.gildedrose;
 
+import com.gildedrose.domain.Item;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -117,7 +118,7 @@ class GildedRoseTest {
     }
 
     private Item buildAgedBrie(int sellIn, int quality) {
-        return Item.agedBrie(sellIn, quality);
+        return new Item("Aged Brie", sellIn, quality);
     }
 
     @Test

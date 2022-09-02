@@ -1,4 +1,4 @@
-package com.gildedrose.composition;
+package com.gildedrose.domain;
 
 public class Quality {
 
