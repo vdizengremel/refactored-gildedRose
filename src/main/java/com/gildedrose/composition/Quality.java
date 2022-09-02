@@ -2,6 +2,9 @@ package com.gildedrose.composition;
 
 public class Quality {
 
+    private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = 50;
+    public static Quality MIN = new Quality(MIN_VALUE);
     private final int value;
 
     public int getValue() {
@@ -9,8 +12,8 @@ public class Quality {
     }
 
     Quality(int value) {
-        value = Math.min(value, 50);
-        value = Math.max(value, 0);
+        value = Math.min(value, MAX_VALUE);
+        value = Math.max(value, MIN_VALUE);
         this.value = value;
     }
 

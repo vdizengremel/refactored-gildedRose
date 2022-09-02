@@ -33,8 +33,8 @@ public class Item {
         return sellIn < days;
     }
 
-    void resetQuality() {
-        this.quality = new Quality(0);
+    void becomeWorthless() {
+        this.quality = Quality.MIN;
     }
 
     void increaseQuality() {

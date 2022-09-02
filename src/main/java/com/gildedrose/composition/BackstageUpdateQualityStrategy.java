@@ -9,7 +9,7 @@ public class BackstageUpdateQualityStrategy implements UpdateQualityStrategy {
     @Override
     public void updateQuality(Item item) {
         if (item.isExpired()) {
-            item.resetQuality();
+            item.becomeWorthless();
         } else if (item.isExpiredInLessThan(6)) {
             item.increaseQuality(3);
         } else if (item.isExpiredInLessThan(11)) {
