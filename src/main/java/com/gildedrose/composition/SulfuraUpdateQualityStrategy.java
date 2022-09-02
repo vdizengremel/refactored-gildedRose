@@ -8,6 +8,6 @@ public class SulfuraUpdateQualityStrategy implements UpdateQualityStrategy {
 
     @Override
     public void updateQuality(Item item) {
-        // Do Nothing
+        throw new RuntimeException("should not update quality for sulfura");
     }
 }

@@ -7,10 +7,9 @@ public class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
+    public void makeItemsAging() {
         for (Item item : items) {
-            item.updateQuality();
-            item.updateSellIn();
+            item.ageByOneDay();
         }
     }
 }

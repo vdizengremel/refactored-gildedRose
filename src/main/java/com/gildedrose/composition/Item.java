@@ -3,34 +3,31 @@ package com.gildedrose.composition;
 public class Item {
 
     private final String name;
-    private int sellIn;
+    private int remainingDaysBeforeExpiration; // called sellIn in the original file
     private Quality quality;
     private final UpdateQualityStrategy updateQualityStrategy;
 
-    public Item(String name, int sellIn, int quality) {
+    public Item(String name, int remainingDaysBeforeExpiration, int quality) {
         this.name = name;
-        this.sellIn = sellIn;
+        this.remainingDaysBeforeExpiration = remainingDaysBeforeExpiration;
         this.quality = new Quality(quality);
         this.updateQualityStrategy = UpdateQualityStrategy.findFor(this);
     }
 
-    public void updateQuality() {
-        this.updateQualityStrategy.updateQuality(this);
-    }
-
-    public void updateSellIn() {
+    void ageByOneDay() {
         boolean isNotSulfura = !this.isSulfura();
         if (isNotSulfura) {
-            this.sellIn = this.sellIn - 1;
+            this.remainingDaysBeforeExpiration = this.remainingDaysBeforeExpiration - 1;
+            this.updateQualityStrategy.updateQuality(this);
         }
     }
 
     boolean isExpired() {
-        return this.sellIn <= 0;
+        return this.remainingDaysBeforeExpiration < 0;
     }
 
     boolean isExpiredInLessThan(int days) {
-        return sellIn < days;
+        return remainingDaysBeforeExpiration < days;
     }
 
     void becomeWorthless() {
@@ -55,7 +52,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality.getValue();
+        return this.name + ", " + this.remainingDaysBeforeExpiration + ", " + this.quality.getValue();
     }
 
     static Item agedBrie(int quantity, int sellIn) {

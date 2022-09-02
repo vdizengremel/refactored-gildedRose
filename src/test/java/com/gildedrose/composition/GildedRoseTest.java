@@ -10,7 +10,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInWhenAnyNameAndQualityIsZero() {
         Item item = new Item("Foo", 1, 0);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(new Item("Foo", 0, 0));
     }
 
@@ -18,7 +18,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndQualityWhenAnyNameAndQualityIsSuperiorToZero() {
         Item item = new Item("Foo", 1, 1);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(new Item("Foo", 0, 0));
     }
 
@@ -26,7 +26,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndQualityWhenSulfuraAndQualityIsSuperiorToZero() {
         Item item = createSulfura(1, 1);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(1, 1));
     }
 
@@ -38,7 +38,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInWhenAgedBrieAndQualityIs50() {
         Item item = buildAgedBrie(1, 50);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildAgedBrie(0, 50));
     }
 
@@ -46,7 +46,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityWhenAgedBrieAndQualityIs49() {
         Item item = buildAgedBrie(1, 49);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildAgedBrie(0, 50));
     }
 
@@ -54,7 +54,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityWhenAgedBrie() {
         Item item = buildAgedBrie(1, 0);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildAgedBrie(0, 1));
     }
 
@@ -62,7 +62,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityBy1WhenBackstageWhenSellInGreaterThan10() {
         Item item = buildBackstage(11, 0);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(10, 1));
     }
 
@@ -70,7 +70,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityBy1WhenBackstageAndSellInLowerOrEqualTo10AndQualityAlmost50() {
         Item item = buildBackstage(10, 49);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(9, 50));
     }
 
@@ -78,7 +78,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityBy2WhenBackstageAndSellInLowerOrEqualTo10() {
         Item item = buildBackstage(10, 48);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(9, 50));
     }
 
@@ -86,7 +86,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityBy1WhenBackstageAndSellInLowerOrEqualTo5AndQualityAlmost50() {
         Item item = buildBackstage(5, 49);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(4, 50));
     }
 
@@ -94,7 +94,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndIncreaseQualityBy3WhenBackstageAndSellInLowerOrEqualTo5() {
         Item item = buildBackstage(5, 47);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(4, 50));
     }
 
@@ -102,7 +102,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInWhenAgedBrieAndSellInLowerOrEqualTo0AndQualityAlmost50() {
         Item item = buildAgedBrie(0, 49);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildAgedBrie(-1, 50));
     }
 
@@ -112,7 +112,7 @@ class GildedRoseTest {
         int quality = 48;
         Item item = buildAgedBrie(sellIn, quality);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildAgedBrie(-1, 50));
     }
 
@@ -124,7 +124,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndPutQualityTo0WhenBackstageAndSellInLowerOrEqualTo0() {
         Item item = buildBackstage(0, 48);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(buildBackstage(-1, 0));
     }
 
@@ -136,7 +136,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInWhenAnyNameAndSellInLowerOrEqualTo0AndQualityIs0() {
         Item item = new Item("Foo", 0, 0);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(new Item("Foo", -1, 0));
     }
 
@@ -144,7 +144,7 @@ class GildedRoseTest {
     void shouldDecreaseSellInAndDecreaseQualityBy2WhenAnyNameAndSellInLowerOrEqualTo0() {
         Item item = new Item("Foo", 0, 5);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(new Item("Foo", -1, 3));
     }
 
@@ -152,7 +152,7 @@ class GildedRoseTest {
     void shouldNotChangeItemWhenSulfuraAndSellInLowerOrEqualTo0() {
         Item item = createSulfura(5, -1);
         GildedRose app = buildGildedRose(item);
-        app.updateQuality();
+        app.makeItemsAging();
         assertThat(item).usingRecursiveComparison().isEqualTo(createSulfura(5, -1));
     }
 
